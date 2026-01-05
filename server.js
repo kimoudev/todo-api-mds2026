@@ -4,7 +4,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Route de base
+// Logging (AVANT les routes)
+const { requestLogger, errorLogger } = require('./middleware/info');
+app.use(requestLogger);
+
+
+// Routes
 app.get('/health', (req, res) => {
     res.json({ 
         status: 'ok', 
@@ -13,12 +18,11 @@ app.get('/health', (req, res) => {
     });
 });
 
-// Export pour les tests
+// Lancement du serveur
 if (require.main === module) {
     app.listen(PORT, () => {
         console.log(`🚀 Serveur démarré sur le port ${PORT}`);
     });
 }
-
+app.use(errorLogger);
 module.exports = app;
-
