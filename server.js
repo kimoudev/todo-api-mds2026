@@ -22,3 +22,6 @@ if (require.main === module) {
 
 module.exports = app;
 
+// Routes todos 
+const todoRoutes = require('./routes/todos'); 
+app.use('/api/todos', todoRoutes);
