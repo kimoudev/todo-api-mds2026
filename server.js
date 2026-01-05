@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Routes filters
+const filterRoutes = require('./routes/filters');
+app.use('/api/filters', filterRoutes);
+
 app.use(express.json());
 
 // Route de base
